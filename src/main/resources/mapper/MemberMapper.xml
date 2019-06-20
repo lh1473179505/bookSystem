@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sjxy.book.dao.MemberMapper">
+
+<insert id="addMember" parameterType="cn.sjxy.book.domain.Member">
+	insert into member(mid,name,age,sex,phone) values(#{mid},#{name},#{age},#{sex},#{phone})
+</insert>
+
+<select id="findAll" resultType="cn.sjxy.book.domain.Member">
+	select * from member
+</select>
+
+<select id="findById" parameterType="String" resultType="cn.sjxy.book.domain.Member">
+	select * from member where mid=#{mid}
+</select>
+</mapper>

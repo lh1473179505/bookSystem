@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sjxy.book.dao.ItemMapper">
+	<insert id="saveItem" parameterType="cn.sjxy.book.domain.Item">
+		insert into item(name,note) values(#{name},#{note})
+	</insert>
+	
+	<select id="findAll" resultMap="imap">
+		select * from item
+	</select>
+	<resultMap type="cn.sjxy.book.domain.Item" id="imap">
+		<id column="iid" property="iid"/>
+		<result column="name" property="name"/>
+		<result column="note" property="note"/>
+	</resultMap>
+	
+	<select id="findByName" parameterType="String" resultType="cn.sjxy.book.domain.Item">
+		select * from item where name=#{name}
+	</select>
+	
+	<delete id="deleteItem" parameterType="Integer">
+		delete from item where iid=#{iid}
+	</delete>
+</mapper>

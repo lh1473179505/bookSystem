@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sjxy.book.dao.AdminMapper1">
+
+<select id="login" parameterType="cn.sjxy.book.domain.Admin" resultMap="r">
+	select aid,password from admin 
+	where 
+	<if test="_parameter !=null">aid=#{aid}</if>
+	<if test="_parameter !=null">and password=#{password}</if>
+</select>
+<resultMap type="cn.sjxy.book.domain.Admin" id="r">
+	<id column="aid" property="aid"/>
+	<result column="password" property="password"/>
+	
+</resultMap>
+
+
+
+
+
+<update id="updateStatus" parameterType="cn.sjxy.book.domain.Admin">
+	update admin set status=1
+	where 
+	aid=#{aid}
+	and password=#{password}
+</update>
+
+<update id="logoutStatus" parameterType="String">
+	update admin set status=0
+	where 
+	aid=#{aid}
+	
+</update>
+
+<update id="updateTime" parameterType="String">
+	update admin set lastdate=now() where aid=#{aid}
+</update>
+
+
+<insert id="save" parameterType="cn.sjxy.book.domain.Admin">
+	insert into admin values(#{aid},#{password},#{status})
+</insert>
+
+</mapper>

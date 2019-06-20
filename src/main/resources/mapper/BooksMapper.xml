@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sjxy.book.dao.BooksMapper">
+
+
+
+
+<insert id="insertBook" parameterType="cn.sjxy.book.domain.Books">
+	insert into books(bid,iid,aid,name,credate,status,note) 
+	values(#{bid},#{iid},#{aid},#{name},sysdate(),1,#{note})
+</insert>
+
+<select id="findAll" resultType="cn.sjxy.book.domain.Books">
+<!-- select b.bid bbid,i.name iname,a.aid aaid,b.name bname,b.credate bcredate,b.status bstatus -->
+	<!-- <resultMap type="cn.sjxy.book.domain.Books" id="bmap">
+	<id column="bbid" property="bid"/>
+	<result column="bname" property="name"/>
+	<result column="bcredate" property="credate"/>
+	<result column="bstatus" property="status"/>
+	<association property="item" javaType="cn.sjxy.book.domain.Item"
+	column="iname" select="cn.sjxy.book.dao.ItemMapper.findByName"/>
+	<association property="admin" javaType="cn.sjxy.book.domain.Admin"
+	column="aaid" select="cn.sjxy.book.dao.AdminMapper.findById"/>
+</resultMap> -->
+	select * from books
+	
+</select>
+
+<select id="findById" parameterType="Integer">
+	select * from books where bid=#{bid}
+</select>
+
+
+<delete id="deleteBooks" parameterType="Integer">
+	delete from books where bid=#{bid}
+</delete>
+</mapper>
+
